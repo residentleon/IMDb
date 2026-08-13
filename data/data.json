@@ -1,0 +1,32 @@
+{
+  "todomvcURL": "/todomvc/",
+  
+  "TC01": {
+    "item1": "Review pull request",
+    "item2": "Update test documentation",
+    "item3": "Investigate failed build",
+
+    "totalItems": "3",
+    "status": "completed",
+    "activeItems": "2",
+    "completedItems": "1",
+    "unusedData": "2"
+  },
+  "TC02": {
+    "item1": "Join the daily meeting",
+    "item2": "Join the QA meeting",
+    "item3": "Send an invite meeting to the dev team to discuss the failed test case in the smoke test suite",
+    "item4": "Raise a bug for the failed test case",
+    "item5": "Create a task 'Regression test' and move it to in progress column",
+    "item6": "Move your task 'Regression test' to done column",
+    "item7": "Move your task 'Automation TC14 - Create notification' to in progress column",
+    "item8": "Submit your time sheet for the week",
+
+    "firtBlockOfItems": "4",
+    "secondBlockOfItems": "3",
+    "status": "completed",
+    "activeItems": "1",
+    "completedItems": "7",
+    "totalItems": "8"
+  }
+}
