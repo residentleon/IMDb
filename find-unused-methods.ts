@@ -35,11 +35,7 @@ const config = {
   dataFilePattern: /\.json$/,
 };
 
-function getAllFiles(
-  dirPath: string,
-  filePattern: RegExp,
-  fileList: string[] = []
-): string[] {
+function getAllFiles(dirPath: string, filePattern: RegExp, fileList: string[] = []): string[] {
   const files = fs.readdirSync(dirPath);
 
   files.forEach((file) => {
@@ -94,9 +90,10 @@ function readAllFiles(files: string[]): Record<string, string> {
 }
 
 // Main execution
-const sourceFiles = getFilesFromDirectories(config.sourceDirectories, config.sourceFilePattern).filter(
-  (filePath) => path.basename(filePath) !== 'find-unused-methods.ts'
-);
+const sourceFiles = getFilesFromDirectories(
+  config.sourceDirectories,
+  config.sourceFilePattern
+).filter((filePath) => path.basename(filePath) !== 'find-unused-methods.ts');
 const dataFiles = getFilesFromDirectories(config.dataDirectories, config.dataFilePattern);
 const allFiles = [...sourceFiles, ...dataFiles];
 
@@ -116,7 +113,9 @@ sourceFiles.forEach((filePath) => {
 
   // Find methods with or without the async modifier.
   const methods = Array.from(
-    content.matchAll(/(?:(?:public|private|protected|static|readonly|async)\s+)*(\w+)\s*\([^)]*\)\s*\{/g),
+    content.matchAll(
+      /(?:(?:public|private|protected|static|readonly|async)\s+)*(\w+)\s*\([^)]*\)\s*\{/g
+    ),
     (match) => match[1]
   );
 
@@ -154,7 +153,10 @@ sourceFiles.forEach((filePath) => {
     const isUsed = new RegExp(`\\.${property}\\b`).test(sourceContent);
 
     if (!isUsed) {
-      const lineInfo = getLineInfo(content, new RegExp(`static\\s+(?:readonly\\s+)?${property}\\s*(?::|=)`));
+      const lineInfo = getLineInfo(
+        content,
+        new RegExp(`static\\s+(?:readonly\\s+)?${property}\\s*(?::|=)`)
+      );
       if (lineInfo.lineNumber > 0) {
         unusedItems.push({
           type: 'Property',
